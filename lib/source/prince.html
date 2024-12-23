@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRINCE-BOT Status</title>
+    <style>
+        /* Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(90deg, 
+                blue, skyblue, purple, white, black, #ff0000, #00ff00, #0000ff);
+            background-size: 300% 300%;
+            animation: gradientAnimation 8s infinite alternate;
+            overflow: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Central Box */
+        .container {
+            text-align: center;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            width: 80%;
+            max-width: 600px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Title Styling */
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8),
+                         0 0 30px blue,
+                         0 0 45px skyblue;
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 15px rgba(255, 255, 255, 0.8); }
+            100% { text-shadow: 0 0 25px purple, 0 0 50px white; }
+        }
+
+        /* Running Text */
+        .marquee {
+            margin-top: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            box-sizing: border-box;
+        }
+
+        .marquee span {
+            display: inline-block;
+            font-size: 22px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            animation: marqueeAnimation 12s linear infinite;
+        }
+
+        @keyframes marqueeAnimation {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Button Styling */
+        .action-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 18px;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: 0.3s;
+            background: transparent;
+        }
+
+        .action-btn:hover {
+            background: white;
+            color: black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Status Title -->
+        <div class="title">Prince Bot Online</div>
+
+        <!-- Running Text -->
+        <div class="marquee">
+            <span>
+                Prince Bot is live! | Reliable, Fast, and Efficient | Always here to help! | Stay ahead with Prince Bot!
+            </span>
+        </div>
+
+        <!-- Action Button -->
+        <a href="#" class="action-btn">Get Started</a>
+    </div>
+</body>
+</html>

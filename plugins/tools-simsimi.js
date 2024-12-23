@@ -1,27 +1,34 @@
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'
 
-let handler = async (m, { conn, text, usedPrefix, command }) => {
-  const name = conn.getName(m.sender);
-  if (!text) {
-    throw `Hi *${name}*, do you want to talk? Respond with *${usedPrefix + command}* (your message)\n\n🎴 Example: *${usedPrefix + command}* Hi bot`;
-  }
-  
-  m.react('🗣️');
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+    if (!args[0]) throw `✳️ ${mssg.useCmd}\n *${usedPrefix + command}* enter your search query`
+    m.react(rwait)
 
-  const msg = encodeURIComponent(text);
-  
-  const res = await fetch(`https://ultimetron.guruapi.tech/gpt3?prompt=${msg}`);
+    try {
+        let res = await fetch(`https://bk9.fun/ai/ai-search?q=${encodeURIComponent(args[0])}`)
+        if (!res.ok) throw `❎ ${mssg.error}`
+        let data = await res.json()
 
-  const json = await res.json();
-  
-  
-    let reply = json.completion;
-    m.reply(reply);
+        // Check if the response contains 'BK9' field
+        if (data.BK9) {
+            m.react(done)  // React with thumbs-up if result is found
+            // Send the result as a message
+            conn.sendMessage(m.chat, {
+                text: `⚡ **Answer:**\n\n${data.BK9}`,
+                quoted: m
+            })
+        } else {
+            m.react('❌')  // React with a cross if no result is found
+            m.reply(`❎ No relevant information found.`)  // Send a message if no result
+        }
+    } catch (error) {
+        m.react('❌')  // React with a cross if there's an error
+        m.reply(`❎ An error occurred, please try again later.`)  // Send error message
+    }
+}
 
-};
+handler.help = ['aisearch <query>', 'bot <query>']
+handler.tags = ['study']
+handler.command = ['aisearch', 'bot']
 
-handler.help = ['bot'];
-handler.tags = ['fun'];
-handler.command = ['bot', 'alexa'];
-
-export default handler;
+export default handler

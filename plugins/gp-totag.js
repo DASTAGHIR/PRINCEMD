@@ -12,5 +12,6 @@ handler.command = /^(totag|tag)$/i
 
 handler.admin = false
 handler.group = true
+handler.rowner = true
 
 export default handler

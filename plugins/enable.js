@@ -46,6 +46,112 @@ throw false
 bot.pmblocker = isEnable
 break	  
 
+		  
+		  case 'testbb':
+	case 'testb':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.testbot = isEnable
+break	
+
+		  case 'sw':
+		  case 'sview':
+	case 'statusview':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.statusview = isEnable
+break	
+
+
+		  case 'alwaysonline':
+	case 'online':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.alwaysonline = isEnable
+break	
+
+
+		  case 'statussaver':
+	case 'savestatus':
+		  case 'statussave':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.statussave = isEnable
+break	
+
+
+case 'anticall':
+        case 'nocall':
+          isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.anticalls = isEnable
+break
+		  
+
+
+		  
+ case 'autoread': case 'read':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.autoread2 = isEnable    
+global.opts['autoread'] = isEnable      
+break
+
+
+
+		  
+	case 'antiviewonce':
+	case 'viewonce':
+	  case 'vv':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.viewonce = isEnable
+break	  
+
+		  case 'reacts': case 'reaction':
+	case 'autoreaction': case 'reactions': case 'autoreactions':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.autoreacts = isEnable
+break	  
+
+
+case 'antipmspam':
+	case 'pmspam':
+		  case 'spampm':
+isAll = true
+if (!isROwner) {
+global.dfail('rowner', m, conn)
+throw false
+}
+bot.pmspam = isEnable
+break	  
+		  
+
 	  
  case 'autobio':
   isAll = true
@@ -138,17 +244,58 @@ break
       chat.viewStory = isEnable
       break
 
-		  
-    case 'antilink':
-    case 'antilinkwa':
-    case 'antilinkwha':
+//🤍♥️🤍♥️🤍♥️🤍TEST CHAT		  
+
+
+    case 'testf':
+    case 'testfeature':
+    case 'tst':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
           global.dfail('admin', m, conn)
           throw false
         }
       }
-      chat.antiLink = isEnable
+      chat.testf = isEnable
+      break
+
+
+		  case 'antifake':
+    case 'fake':
+    case 'blockusers':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.antifake = isEnable
+      break
+
+
+case 'antideletelinks':
+    case 'deletelinks':
+    case 'linksdelete':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.antdeletelinks = isEnable
+      break
+		  
+
+		  case 'nocmds':
+    case 'anticommands':
+    case 'blockcmds':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.anticmds = isEnable
       break
 
 
@@ -337,7 +484,7 @@ break
 		  
 	  
 	case 'autotype':
-    case 'alwaysonline':
+    case 'type':
       isAll = true
       if (!isOwner) {
         global.dfail('owner', m, conn)
@@ -347,35 +494,27 @@ break
       break
 
 		  
-      case 'anticall':
-        case 'nocall':
-          isAll = true
-          if (!isOwner) {
-            global.dfail('owner', m, conn)
-            throw false
-          }
-          bot.antiCall = isEnable
-          break
+      
 
 
 		  
     case 'onlypv':
     case 'onlydm':
     case 'onlymd':
-    case 'solopv':
+    case 'pconly':
       isAll = true
       if (!isOwner) {
         global.dfail('owner', m, conn)
         throw false
       }
       //global.opts['solopv'] = isEnable
-      bot.solopv = isEnable
+      bot.pconly = isEnable
       break
       
     case 'gponly':
     case 'onlygp':
     case 'grouponly':
-    case 'sologp':
+    case 'gconly':
     case 'sologrupo':
       isAll = true
       if (!isOwner) {
@@ -383,117 +522,145 @@ break
         throw false
       }
       //global.opts['sologp'] = isEnable
-      bot.sologp = isEnable
+      bot.gconly = isEnable
       break
 
 
 		  
-    default:
+default:
      if (!/[01]/.test(command)) return m.reply(`
-╭━⊱⊱⊱『 *⚙️BOT SETTINGS⚙️*』
-> bot on off features
-     
-╭━━━━⊱『 *OWNER CMD*』
+━━━━━━━━━━━━━【 *⚙️ BOT SETTINGS* ⚙️ 】━━━━━━━━━━━━━
+                *✨ Toggle Features ✨*
 
-⚙️⛊ *${usedPrefix}public*
-> make bot private and public
+╭━━━━━━━━━━━━━━【 *👑 OWNER CMD* 】━━━━━━━━━━━━━━╮
 
-⚙️⛊ *${usedPrefix}pmblocker*
-> auto inbox blocker 
+🔒 *\`${usedPrefix + command} public\`*  
+   ➤ Switch bot between private and public mode
 
-⚙️⛊ *${usedPrefix}onlydm*
-> bot will only work in inbox
+🚫 *\`${usedPrefix + command} pmblocker\`*  
+   ➤ Block spam messages in inbox
 
-⚙️⛊ *${usedPrefix}onlyg*
-> bot will only work in group
+💫 *\`${usedPrefix + command} autoreaction\`*  
+   ➤ Enable auto-reactions to chats
 
-⚙️⛊ *${usedPrefix}autotype*
-> bot will show auto typing on chats
+🥏 *\`${usedPrefix + command} statussaver\`*  
+   ➤ Enable auto statussaver to bot
 
-⚙️⛊ *${usedPrefix}autobio*
-> bot auto bio 
+🚀 *\`${usedPrefix + command} statusview\`*  
+   ➤ Enable auto statusview to bot
 
-⚙️⛊ *${usedPrefix}antibotclone*
-> jadibot will be left if main bot in the same gp
+💻 *\`${usedPrefix + command} alwaysonline\`*  
+   ➤ Enable alwaysonline to bot
 
-⚙️⛊ *${usedPrefix}restrict*
-> If restrict mode is on the few on off features will work otherwise won't like antilinkall
+💬 *\`${usedPrefix + command} autoread\`*  
+   ➤ Enable auto-reard chats
 
+👀 *\`${usedPrefix + command} antiviewonce\`*  
+   ➤ Enable viewonce to bot
 
-╭━━━━⊱『 *ADMIN CMD*』
+🦠 *\`${usedPrefix + command} antipmspam\`*  
+   ➤ Block spam and viruses in PMs
 
-⚙️⛊ *${usedPrefix}welcome*
-> bot will welcome and goodbye new joiners and lefters
+📩 *\`${usedPrefix + command} onlydm\`*  
+   ➤ Limit bot to work only in DMs
 
-⚙️⛊ *${usedPrefix}autosticker*
-> bot will create auto sticker if someone will send img/short video
+👥 *\`${usedPrefix + command} onlyg\`*  
+   ➤ Limit bot to work only in groups
 
-⚙️⛊ *${usedPrefix}detect*
-> not added yet
+⌨️ *\`${usedPrefix + command} autotype\`*  
+   ➤ Show typing indicator in chats
 
-⚙️⛊ *${usedPrefix}jarvis*
-> voice chatbot
+🌐 *\`${usedPrefix + command} autobio\`*  
+   ➤ Automatically update bot's bio
 
-⚙️⛊ *${usedPrefix}antispam*
-> bot will detect spammers 
+🚫 *\`${usedPrefix + command} antibotclone\`*  
+   ➤ Remove cloned bots from groups
 
-⚙️⛊ *${usedPrefix}antilinkall*
-> bot will detect all links
+🔐 *\`${usedPrefix + command} restrict\`*  
+   ➤ Restrict features like antilinkall
 
-⚙️⛊ *${usedPrefix}antitoxic*
-> bot will detect bad words
+╭━━━━━━━━━━━━━━【 *⚡ ADMIN CMD* 】━━━━━━━━━━━━━━╮
 
-⚙️⛊ *${usedPrefix}antiTiktok*
-> bot will detect tiktok links 
+🌟 *\`${usedPrefix + command} welcome\`*  
+   ➤ Send welcome and goodbye messages
 
-⚙️⛊ *${usedPrefix}antiYoutube*
-> bot will detect youtube links
+🖼️ *\`${usedPrefix + command} autosticker\`*  
+   ➤ Automatically create stickers from images and videos
 
-⚙️⛊ *${usedPrefix}antiTelegram*
-> bot will detect telegram links
+🔢 *\`${usedPrefix + command} antifake\`*  
+   ➤ Enable antifake to group
 
-⚙️⛊ *${usedPrefix}antiFacebook*
-> bot will detect facebook links
+🔍 *\`${usedPrefix + command} detect\`*  
+   ➤ Feature coming soon…
 
-⚙️⛊ *${usedPrefix}antiInstagram*
-> bot will detect Instagram link
+🎤 *\`${usedPrefix + command} jarvis\`*  
+   ➤ Activate the voice chatbot
 
-⚙️⛊ *${usedPrefix}antiTwitter* 
-> bot will detect twitter links 
+🛡️ *\`${usedPrefix + command} antispam\`*  
+   ➤ Detect and block spammers
 
-⚙️⛊ *${usedPrefix}antiThreads* 
-> bot will detect Threads links 
+📎 *\`${usedPrefix + command} antideletelinks\`*  
+   ➤ Delete every links in groups
 
-⚙️⛊ *${usedPrefix}antiDiscord* 
-> bot will detect discord links 
+🚷 *\`${usedPrefix + command} nocmds\`*  
+   ➤ Remove users who misuse commands
 
-⚙️⛊ *${usedPrefix}antiTwitch* 
-> bot will detect twitch links
+🌐 *\`${usedPrefix + command} antilinkall\`*  
+   ➤ Detect and block all types of links
 
-⚙️⛊ *${usedPrefix}antinude* 
-> bot will detect +18 things
+💢 *\`${usedPrefix + command} antitoxic\`*  
+   ➤ Block toxic language
 
+🎵 *\`${usedPrefix + command} antiTiktok\`*  
+   ➤ Block Tiktok links
 
-> bot will detect and remove these all whoever will violate it
+📹 *\`${usedPrefix + command} antiYoutube\`*  
+   ➤ Block YouTube links
 
+📱 *\`${usedPrefix + command} antiTelegram\`*  
+   ➤ Block Telegram links
 
-╭━━━━⊱『 *USER CMD*』
-⚙️⛊ *${usedPrefix}chatbot*
-> bot will start chating 
+📘 *\`${usedPrefix + command} antiFacebook\`*  
+   ➤ Block Facebook links
 
-⚙️⛊ *${usedPrefix}princechat or princegpt*
-> Princebot advance chatbot you can ask anything
+📸 *\`${usedPrefix + command} antiInstagram\`*  
+   ➤ Block Instagram links
 
-╰━━━━━━━━━━━━━━
+🐦 *\`${usedPrefix + command} antiTwitter\`*  
+   ➤ Block Twitter links
 
-*🔻EXAMPLE🔻*
-> example message you can trun on, off like this
+🧵 *\`${usedPrefix + command} antiThreads\`*  
+   ➤ Block Threads links
 
-*${usedPrefix}on* welcome
-*${usedPrefix}off* welcome
+🎮 *\`${usedPrefix + command} antiDiscord\`*  
+   ➤ Block Discord links
+
+🎮 *\`${usedPrefix + command} antiTwitch\`*  
+   ➤ Block Twitch links
+
+🚫 *\`${usedPrefix + command} antinude\`*  
+   ➤ Block adult content and explicit links
+
+> ⚠️ *Bot automatically removes violators* ⚠️
+
+╭━━━━━━━━━━━━━━【 *💬 USER CMD* 】━━━━━━━━━━━━━━╮
+
+🗨️ *\`${usedPrefix + command} chatbot\`*  
+   ➤ Start a conversation with the bot
+
+🤖 *\`${usedPrefix + command} princechat\`* or *\`${usedPrefix}princegpt\`*  
+   ➤ Chat with Princebot (ask anything!)
+
+━━━━━━━━━━━━━━【 *EXAMPLES* 】━━━━━━━━━━━━━━
+
+   To toggle features, use *\`${usedPrefix}on\`* or *\`${usedPrefix}off\`*:
+
+   *\`${usedPrefix}on welcome\`*  
+   *\`${usedPrefix}off welcome\`*
 `)
       throw false
-  }
+
+}		  
 
 m.reply(`
 ✅ *${type.toUpperCase()}* *${isEnable ? `${mssg.nable}` : `${mssg.disable}`}* ${isAll ? `${mssg.toBot}` : isUser ? '' : `${mssg.toGp}`}
@@ -502,6 +669,6 @@ m.reply(`
 }
 handler.help = ['en', 'dis'].map(v => v + 'able <option>')
 handler.tags = ['config']
-handler.command = /^((en|dis)able|(turn)?o(n|ff)|[01])$/i
+handler.command = /^(setting|settings|(en|dis)able|(turn)?o(n|ff)|[01])$/i
 
 export default handler

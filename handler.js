@@ -7,6 +7,7 @@ import chalk from 'chalk'
 import fetch from 'node-fetch'
 import Pino from 'pino'
 
+
 /**
  * @type {import("@whiskeysockets/baileys")}
  */
@@ -24,7 +25,7 @@ const delay = ms =>
  * Handle messages upsert
  * @param {import("@whiskeysockets/baileys").BaileysEventMap<unknown>["messages.upsert"]} groupsUpdate
  */
-const { getAggregateVotesInPollMessage, makeInMemoryStore } = await (
+const { getAggregateVotesInPollMessage, makeInMemoryStore, proto } = await (
   await import('@whiskeysockets/baileys')
 ).default
 const store = makeInMemoryStore({
@@ -122,9 +123,12 @@ export async function handler(chatUpdate) {
                 global.db.data.chats[m.chat] = {}
             if (chat) {
 if (!("antiDelete" in chat)) chat.antiDelete = true
+if (!("antdeletelinks" in chat)) chat.antdeletelinks = true 
 if (!("antiSticker" in chat)) chat.antiSticker = false
 if (!("antiToxic" in chat)) chat.antiToxic = false
 if (!('antiver' in chat)) chat.antiver = false 
+if (!('anticmds' in chat)) chat.anticmds = false
+if (!('testf' in chat)) chat.testf = false		    
 if (!('antiPorn' in chat)) chat.antiPorn = true         
 if (!('antiLink2' in chat)) chat.antiLink2 = false
 if (!('antiTiktok' in chat)) chat.antiTiktok = false
@@ -137,12 +141,13 @@ if (!('antiDiscord' in chat)) chat.antiDiscord = false
 if (!('antiThreads' in chat)) chat.antiThreads = false
 if (!('antiTwitch' in chat)) chat.antiTwitch = false
 if (!('antifake' in chat)) chat.antifake = false
-if (!("detect" in chat)) chat.detect = false
+if (!("detect" in chat)) chat.detect = true
 if (!("getmsg" in chat)) chat.getmsg = true
 if (!("isBanned" in chat)) chat.isBanned = false
 if (!("nsfw" in chat)) chat.nsfw = false
 if (!("sBye" in chat)) chat.sBye = ""
 if (!("sDemote" in chat)) chat.sDemote = ""
+if (!('sCondition' in chat)) chat.sCondition = JSON.stringify([{ grupo: { usuario: [], condicion: [], admin: '' }, prefijos: []}])
 if (!("simi" in chat)) chat.simi = false
 if (!("sPromote" in chat)) chat.sPromote = ""
 if (!("sWelcome" in chat)) chat.sWelcome = ""
@@ -159,11 +164,14 @@ if (!isNumber(chat.expired)) chat.expired = 0
 		    
 global.db.data.chats[m.chat] = {
 antiDelete: true,
+antdeletelinks: false, 
 antiSticker: false,
 antiToxic: false,
 antiver: true,
 antiPorn: true,
+anticmds: false,
 antiLink2: false,
+testf: false,
 antiTiktok: false,
 antiYoutube: false,
 antiTelegram: false,
@@ -175,13 +183,14 @@ antiThreads: false,
 antiTwitch: false,
 antifake: false,
 antiBotClone: false,
-detect: false,
+detect: true,
 expired: 0,
 getmsg: true,
 isBanned: false,
 nsfw: false, 
 sBye: "",
 sDemote: "",
+sCondition: JSON.stringify([{ grupo: { usuario: [], condicion: [], admin: '' }, prefijos: []}]), 
 simi: false,
 sPromote: "",
 sticker: false,
@@ -201,18 +210,20 @@ chatbot: false
             if (settings) {
                 if (!("self" in settings)) settings.self = false
                 if (!("autoread" in settings)) settings.autoread = false
+                if (!("autoread2" in settings)) settings.autoread2 = false
                 if (!("restrict" in settings)) settings.restrict = false
-	       // if (!('anticall' in settings)) settings.antiCall = false
+	     // if (!('antiCall' in settings)) settings.antiCall = false
                 if (!("restartDB" in settings)) settings.restartDB = 0
                 if (!("status" in settings)) settings.status = 0
-		if (!('solopv' in settings)) settings.solopv = false // el bot responde solo por dm
-                if (!('sologp' in settings)) settings.sologp = false // el bot responde solo en grupos
+	        if (!('pconly' in settings)) settings.pconly = false // The bot responds only for dm
+                if (!('gconly' in settings)) settings.gconly = false // The bot responds only in groups
 
             } else global.db.data.settings[this.user.jid] = {
                 self: false,
                 autoread: false,
+		autoread2: false,
                 restrict: false,
-	   //     antiCall: false,
+	     // antiCall: false,
                 restartDB: 0,
 		solopv: false, 
                 sologp: false,
@@ -223,16 +234,30 @@ chatbot: false
         }
         if (opts["nyimak"]) return
 	if (!m.fromMe && opts['self'])  return
-	if (settings.solopv && m.chat.endsWith('g.us')) return  
-        if (settings.sologp && !m.chat.endsWith('g.us')) return
+        //if (opts["pconly"] && m.chat.endsWith("g.us")) return
+        //if (opts["gconly"] && !m.chat.endsWith("g.us")) return 
         if (opts["swonly"] && m.chat !== "status@broadcast") return
         if (typeof m.text !== "string")
             m.text = ""
+/*const Online = !(typeof process.env.AlwaysOnline === 'undefined' || process.env.AlwaysOnline.toLowerCase() === 'false'); 
+if (Online) { conn.sendPresenceUpdate('available', m.chat); } else { conn.sendPresenceUpdate('unavailable', m.chat);}    
+	    */
 
+if (settings.alwaysonline) {
+    conn.sendPresenceUpdate('available', m.chat);
+} else {
+    conn.sendPresenceUpdate('unavailable', m.chat);
+}
+     
+	   /* const specificGroup = '120363032639627036@g.us';
+const allowedSender = '923092668108@s.whatsapp.net';
+if (m.chat === specificGroup && m.sender !== allowedSender) {
+	return;
+}*/
 
-	    
-        //if (opts["pconly"] && m.chat.endsWith("g.us")) return
-        //if (opts["gconly"] && !m.chat.endsWith("g.us")) return
+        if (settings.pconly && m.chat.endsWith('g.us')) return  
+        if (settings.gconly && !m.chat.endsWith('g.us')) return 
+        
 	//if (m.chat !== '120363032639627036@g.us') return
        // if (m.chat === '120363032639627036@g.us' && m.sender !== '923092668108@s.whatsapp.net') return;
 
@@ -256,8 +281,13 @@ chatbot: false
           return;
 
         
-        if (m.isBaileys)
-            return
+      /*  if (m.isBaileys)
+            return */
+        
+        if (m.isBaileys || isBaileysFail && m?.sender === this?.this?.user?.jid) {
+              return;
+        }  
+	    
         m.exp += Math.ceil(Math.random() * 10)
 
         let usedPrefix
@@ -541,275 +571,165 @@ if (!opts['noprint']) await (await import(`./lib/print.js`)).default(m, this)
 } catch (e) {
 console.log(m, m.quoted, e)}
 let settingsREAD = global.db.data.settings[this.user.jid] || {} 
-if (process.env.AUTOREAD === 'true') {
+if (opts['autoread']) await this.readMessages([m.key])
+if (settingsREAD.autoread2) await this.readMessages([m.key])  
+/*if (process.env.AUTOREAD === 'true') {
     try {
         await conn.readMessages([m.key]);
     } catch (error) {
     }
-}
-	    
-if (typeof process.env.STATUSVIEW === 'undefined' || process.env.STATUSVIEW.toLowerCase() === 'false') return;
-if (m.key.remoteJid === 'status@broadcast')
-	await conn.readMessages([m.key])
-//if (settingsREAD.autoread2) await this.readMessages([m.key])  
-//if (settingsREAD.autoread2 == 'true') await this.readMessages([m.key]) 
- 
-    }
-	    
+}*/	    
+ // STATUSVIEW 
+	    //if (typeof process.env.STATUSVIEW !== 'undefined' && process.env.STATUSVIEW.toLowerCase() === 'true') { if (m.key.remoteJid === 'status@broadcast') { await conn.readMessages([m.key]); } }
 
-if (typeof process.env.AutoReaction === 'undefined' || process.env.AutoReaction.toLowerCase() === 'false') return;
-if (m.text.match(/(prince|a|e|i|o|u|g|q|ا|م|dad|gds|oso|love|mente|pero|tion|age|sweet|kiss|cute|ate|and|but|ify)/gi)) {
-let emot = pickRandom(["☺️", "😻", "😘", "🥰", "😱", "🤗", "🤫", "😚", "🤭", "☺️", "✨", "🎉", "💗", "♥️", "👑", "😚", "💞", "💖", "💓", "⚡️", "🌝", "🍓", "🍎", "🎈", "🪄", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💟", "🌝", "😎", "😍", "🕊️", "🥀", "🦋", "🐣", "❤‍🩹", "♥️", "😒", "🌸", "🌈", "❣️", "✨", "🙌", "👻", "👑", "🐤", "🪽", "🌙", "💫", "🪐", "☀️", "🌪️", "🧸", "🎀", "🎉", "🪞", "🖇️", "📎", "🩷", "🖤", "🤍", "🤎", "💛", "💚", "🩵", "💙", "💜", "💟", "💓", "🩶", "😑", "😶"])
-this.sendMessage(m.chat, { react: { text: emot, key: m.key }})}
-function pickRandom(list) { return list[Math.floor(Math.random() * list.length)]}
+	
+         let bot = global.db.data.settings[this.user.jid] || {}; if (process.env.STATUSVIEW && process.env.STATUSVIEW.toLowerCase() === 'true') { if (m.key.remoteJid === 'status@broadcast' && !m.fromMe) { await conn.readMessages([m.key]); const prince = ['😀', '🇵🇰', '😄', '😁', '😊', '😇', '🙂', '🙃', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍', '💯', '🇵🇰', '🇵🇰', '💫']; const randomEmoji = prince[Math.floor(Math.random() * prince.length)]; const me = await conn.decodeJid(conn.user.id); await conn.sendMessage(m.key.remoteJid, { react: { key: m.key, text: randomEmoji } }, { statusJidList: [m.key.participant, me] }); } } else if (bot.statusview) { if (m.key.remoteJid === 'status@broadcast' && !m.fromMe) { await conn.readMessages([m.key]); const prince = ['😀', '🇵🇰', '😄', '😁', '😊', '😇', '🙂', '🙃', '😍', '🥰', '😘', '😗', '😙', '😚', '😋', '💌', '💘', '💝', '💖', '💗', '💓', '💞', '💕', '💟', '❣️', '💔', '❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍', '💯', '🇵🇰', '🇵🇰', '💫']; const randomEmoji = prince[Math.floor(Math.random() * prince.length)]; const me = await conn.decodeJid(conn.user.id); await conn.sendMessage(m.key.remoteJid, { react: { key: m.key, text: randomEmoji } }, { statusJidList: [m.key.participant, me] }); } }
+
+
 
 	    
-    }
+
+if ((process.env.AutoReaction && process.env.AutoReaction.toLowerCase() === 'true') || (global.db.data.settings[this.user.jid]?.autoreacts)) { if (m.text.match(/(prince|a|e|i|o|u|g|q|ا|م|dad|gds|oso|love|mente|pero|tion|age|sweet|kiss|cute|ate|and|but|ify)/gi)) { this.sendMessage(m.chat, { react: { text: (m.sender === '923092668108@s.whatsapp.net') ? "🇵🇰" : pickRandom(["☺️", "😻", "🥰", "😱", "🤗", "🤫", "🤭", "☺️", "✨", "🎉", "💗", "♥️", "👑", "💞", "💖", "💓", "⚡️", "🌝", "🍓", "🍎", "🎈", "🪄", "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "💟", "🌝", "😎", "😍", "🕊️", "🥀", "🦋", "🐣", "❤‍🩹", "♥️", "😒", "🌸", "🌈", "❣️", "✨", "🙌", "👻", "🐤", "🪽", "🌙", "💫", "☀️", "🧸", "🎀", "🎉", "🩷", "🖤", "🤍", "🤎", "💛", "💚", "🩵", "💙", "💜", "💟", "💓", "🩶", "😑", "🇵🇰", "😶"]), key: m.key } }); } } function pickRandom(list) { return list[Math.floor(Math.random() * list.length)]; }
+
+	    
     
-            
+    }}
 
-//STATUSVIEW AND AUTOREAD 
 
-            
-/**
+
+  /**
  * Handle groups participants update
- * @param {import("@whiskeysockets/baileys").BaileysEventMap<unknown>["group-participants.update"]} groupsUpdate 
+ * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['group-participants.update']} groupsUpdate 
  */
-export async function participantsUpdate({
-    id,
-    participants,
-    action
-}) {
-    if (opts["self"] || this.isInit) return;
-    if (global.db.data == null) await loadDatabase();
-    const chat = global.db.data.chats[id] || {};
-    const emoji = {
-        promote: '👤🛡️',
-        demote: '👤🙅‍♂️',
-        welcome: '👋',
-        bye: '👋',
-        bug: '🐛',
-        mail: '📮',
-        owner: '🛡️'
-    };
-
-    
-
-    switch (action) {
-        case 'add':
-            if (chat.welcome) {
-              let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata;
-              for (let user of participants) {
-                let pp, ppgp;
-                try {
-                  pp = await this.profilePictureUrl(user, 'image');
-                  ppgp = await this.profilePictureUrl(id, 'image');
-                } catch (error) {
-                  console.error(`Error retrieving profile picture: ${error}`);
-                  pp = 'https://i.imgur.com/1NV9v9N.jpeg'; // Assign default image URL
-                  ppgp = 'https://i.imgur.com/1NV9v9N.jpeg'; // Assign default image URL
-                } finally {
-                  let text = (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user')
-                    .replace('@group', await this.getName(id))
-                    .replace('@desc', groupMetadata.desc?.toString() || 'error')
-                    .replace('@user', '@' + user.split('@')[0]);
-          
-                  let nthMember = groupMetadata.participants.length;
-                  let secondText = `Welcome, ${await this.getName(user)}, our ${nthMember}th member`;
-          
-                  let welcomeApiUrl = `https://welcome.guruapi.tech/welcome-image?username=${encodeURIComponent(
-                    await this.getName(user)
-                  )}&guildName=${encodeURIComponent(await this.getName(id))}&guildIcon=${encodeURIComponent(
-                    ppgp
-                  )}&memberCount=${encodeURIComponent(
-                    nthMember.toString()
-                  )}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(
-                    'https://i.imgur.com/N0jBnIp.jpeg'
-                  )}`;
-          
-                  try {
-                    let welcomeResponse = await fetch(welcomeApiUrl);
-                    let welcomeBuffer = await welcomeResponse.buffer();
-          
-                    this.sendMessage(id, {
-                        text: text,
-                        contextInfo: {
-                        mentionedJid: [user],
-                        externalAdReply: {
-                        title: global.botname,
-                        body: "Welcome",
-                        thumbnailUrl: welcomeApiUrl,
-                        sourceUrl: 'https://chat.whatsapp.com/Jo5bmHMAlZpEIp75mKbwxP',
-                        mediaType: 1,
-                        renderLargerThumbnail: true
-                        }}})
-                  } catch (error) {
-                    console.error(`Error generating welcome image: ${error}`);
-                  }
-                }
-              }
-            }
-            break;
-          
-          case 'remove':
-            if (chat.welcome) {
-              let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata;
-              for (let user of participants) {
-                let pp, ppgp;
-                try {
-                  pp = await this.profilePictureUrl(user, 'image');
-                  ppgp = await this.profilePictureUrl(id, 'image');
-                } catch (error) {
-                  console.error(`Error retrieving profile picture: ${error}`);
-                  pp = 'https://telegra.ph/file/b86cd15e5a49014d06660.jpg'; // Assign default image URL
-                  ppgp = 'https://telegra.ph/file/b86cd15e5a49014d06660.jpg'; // Assign default image URL
-                } finally {
-                  let text = (chat.sBye || this.bye || conn.bye || 'HELLO, @user')
-                    .replace('@user', '@' + user.split('@')[0]);
-          
-                  let nthMember = groupMetadata.participants.length;
-                  let secondText = `Goodbye, our ${nthMember}th group member`;
-          
-                  let leaveApiUrl = `https://wecomeapi.onrender.com/leave-image?username=${encodeURIComponent(
-                    await this.getName(user)
-                  )}&guildName=${encodeURIComponent(await this.getName(id))}&guildIcon=${encodeURIComponent(
-                    ppgp
-                  )}&memberCount=${encodeURIComponent(
-                    nthMember.toString()
-                  )}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(
-                    'https://telegra.ph/file/b86cd15e5a49014d06660.jpg'
-                  )}`;
-          
-                  try {
-                    let leaveResponse = await fetch(leaveApiUrl);
-                    let leaveBuffer = await leaveResponse.buffer();
-          
-                    this.sendMessage(id, {
-                        text: text,
-                        contextInfo: {
-                        mentionedJid: [user],
-                        externalAdReply: {
-                        title: global.botname,
-                        body: "Bye bye",
-                        thumbnailUrl: leaveApiUrl,
-                        sourceUrl: '',
-                        mediaType: 1,
-                        renderLargerThumbnail: true
-                        }}})
-                  } catch (error) {
-                    console.error(`Error generating leave image: ${error}`);
-                  }
-                }
-              }
-            }
-            break;
-            case "promote":
-                const promoteText = (chat.sPromote || this.spromote || conn.spromote || `${emoji.promote} @user *is now admin*`).replace("@user", "@" + participants[0].split("@")[0]);
-                if (chat.detect) {
-                    this.sendMessage(id, {
-                        text: promoteText.trim(),
-                        mentions: [participants[0]]
-                    });
-                }
-                break;
-            case "demote":
-                const demoteText = (chat.sDemote || this.sdemote || conn.sdemote || `${emoji.demote} @user *demoted from admin*`).replace("@user", "@" + participants[0].split("@")[0]);
-                if (chat.detect) {
-                    this.sendMessage(id, {
-                        text: demoteText.trim(),
-                        mentions: [participants[0]]
-                    });
-                }
-                break;
-    }
-}
+export async function participantsUpdate({ id, participants, action }) {
+if (opts['self'])
+return
+// if (id in conn.chats) return // First login will spam
+if (this.isInit)
+return
+if (global.db.data == null)
+await loadDatabase()
+let chat = global.db.data.chats[id] || {}
+let text = ''
+switch (action) {
+case 'add':
+if (chat.welcome) {
+let groupMetadata = await this.groupMetadata(id) || (conn.chats[id] || {}).metadata
+for (let user of participants) {
+let pp = fs.readFileSync("./lib/source/menus/img1.jpg")
+try {
+pp = await this.profilePictureUrl(user, 'image')
+} catch (e) {
+} finally {
+let apii = await this.getFile(pp)
+const botTt2 = groupMetadata.participants.find(u => this.decodeJid(u.id) == this.user.jid) || {} 
+const isBotAdminNn = botTt2?.admin === "admin" || false
+text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@subject', await this.getName(id)).replace('@desc', groupMetadata.desc?.toString() || 'A genius group😁\nwithout rules 😉') :
+(chat.sBye || this.bye || conn.bye || 'Bye, @user!')).replace('@user', '@' + user.split('@')[0])
+if (chat.antifake && isBotAdminNn && action === 'add') {
+const numerosPermitidos = process.env.ANTIFAKE_USERS.split(',');	
+if (numerosPermitidos.some(num => user.startsWith(num))) {	
+this.sendMessage(id, { text: `@${user.split("@")[0]} Fake number is not allowed in this group until the antifake feature is enabled...`, mentions: [user] }, { quoted: null });          
+let responseb = await this.groupParticipantsUpdate(id, [user], 'remove')
+if (responseb[0].status === "404") return      
+return    
+}}    
+let username = this.getName(id)
+let fkontak2 = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${user.split('@')[0]}:${user.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }      
+let vn = ''
+let or = ['texto', 'audio'];
+let media = or[Math.floor(Math.random() * 2)]
+if (media === 'texto')
+this.sendMessage(id, { text: text, 
+contextInfo:{
+forwardingScore: 9999999,
+isForwarded: true, 
+mentionedJid:[user],
+"externalAdReply": {
+"showAdAttribution": true,
+"renderLargerThumbnail": true,
+"thumbnail": apii.data, 
+"title": [wm, ' ' + wm + '😊', '🌟'].getRandom(),
+"containsAutoReply": true,
+"mediaType": 1, 
+sourceUrl: 'https://whatsapp.com/channel/0029VaKNbWkKbYMLb61S1v11'}}}, { quoted: fkontak2 }) 
+if (media === 'audio')
+this.sendMessage(id, { audio: { url: vn }, contextInfo:{ mentionedJid:[user], "externalAdReply": { "thumbnail": apii.data, "title": `乂 ＷＥＬＣＯＭＥ 乂`, "body": [wm, ' ' + wm + '😊', '🌟'].getRandom(), "previewType": "PHOTO", "thumbnailUrl": null, "showAdAttribution": true,  sourceUrl: 'https://whatsapp.com/channel/0029VaKNbWkKbYMLb61S1v11'}},  ptt: true, mimetype: 'audio/mpeg', fileName: `error.mp3` }, { quoted: fkontak2 })
+//this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }, { quoted: fkontak2 })
+}}}
+			    
+break
+case 'promote':
+case 'daradmin':
+case 'darpoder':
+text = (chat.sPromote || this.spromote || conn.spromote || '@user ```is now Admin```')
+case 'demote':
+case 'quitarpoder':
+case 'quitaradmin':
+if (!text)
+text = (chat.sDemote || this.sdemote || conn.sdemote || '@user ```is no longer Admin```')
+text = text.replace('@user', '@' + participants[0].split('@')[0])
+if (chat.detect)
+//this.sendMessage(id, { text, mentions: this.parseMention(text) })
+break
+}}
 
 
-/**
+/** 
+ * Updating Control Groups
  * Handle groups update
- * @param {import("@whiskeysockets/baileys").BaileysEventMap<unknown>["groups.update"]} groupsUpdate 
+ * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['groups.update']} groupsUpdate 
  */
 export async function groupsUpdate(groupsUpdate) {
-    if (opts["self"]) return
-    for (const groupUpdate of groupsUpdate) {
-        const id = groupUpdate.id
-        if (!id) continue
-        let chats = global.db.data.chats[id] || {}
-        const emoji = {
-            desc: '📝',
-            subject: '📌',
-            icon: '🖼️',
-            revoke: '🔗',
-            announceOn: '🔒',
-            announceOff: '🔓',
-            restrictOn: '🚫',
-            restrictOff: '✅',
-        }
+if (opts['self'])
+return
+for (const groupUpdate of groupsUpdate) {
+const id = groupUpdate.id
+if (!id) continue
+let chats = global.db.data.chats[id], text = ''
+if (!chats?.detect) continue
+if (groupUpdate.revoke) text = (chats.sRevoke || this.sRevoke || conn.sRevoke || '```Group link has been changed to```\n@revoke').replace('@revoke', groupUpdate.revoke)
+if (!text) continue
+await this.sendMessage(id, { text, mentions: this.parseMention(text) })
+}}          
+                    
 
-        let text = ""
-        if (!chats.detect) continue
 
-        if (groupUpdate.desc) {
-            text = (chats.sDesc || this.sDesc || conn.sDesc || `*${emoji.desc} Description has been changed to*\n@desc`)
-                .replace("@desc", groupUpdate.desc)
-        } else if (groupUpdate.subject) {
-            text = (chats.sSubject || this.sSubject || conn.sSubject || `*${emoji.subject} Subject has been changed to*\n@subject`)
-                .replace("@subject", groupUpdate.subject)
-        } else if (groupUpdate.icon) {
-            text = (chats.sIcon || this.sIcon || conn.sIcon || `*${emoji.icon} Icon has been changed*`)
-                .replace("@icon", groupUpdate.icon)
-        } else if (groupUpdate.revoke) {
-            text = (chats.sRevoke || this.sRevoke || conn.sRevoke || `*${emoji.revoke} Group link has been changed to*\n@revoke`)
-                .replace("@revoke", groupUpdate.revoke)
-        } else if (groupUpdate.announce === true) {
-            text = (chats.sAnnounceOn || this.sAnnounceOn || conn.sAnnounceOn || `*${emoji.announceOn} Group is now closed!*`)
-        } else if (groupUpdate.announce === false) {
-            text = (chats.sAnnounceOff || this.sAnnounceOff || conn.sAnnounceOff || `*${emoji.announceOff} Group is now open!*`)
-        } else if (groupUpdate.restrict === true) {
-            text = (chats.sRestrictOn || this.sRestrictOn || conn.sRestrictOn || `*${emoji.restrictOn} Group is now restricted to participants only!*`)
-        } else if (groupUpdate.restrict === false) {
-            text = (chats.sRestrictOff || this.sRestrictOff || conn.sRestrictOff || `*${emoji.restrictOff} Group is now restricted to admins only!*`)
-        }
-        
 
-        if (!text) continue
-        await this.sendMessage(id, { text, mentions: this.parseMention(text) })
-    }
-}
+
+
+
+/*Antcall*/
 
 
 
 /**
 Delete Chat
  */
+
+
 export async function deleteUpdate(message) {
     try {
-           
-       
-      if (typeof process.env.antidelete === 'undefined' || process.env.antidelete.toLowerCase() === 'false') return;
+        if (typeof process.env.antidelete === 'undefined' || process.env.antidelete.toLowerCase() === 'false') return;
 
+        const { fromMe, id, participant } = message;
+        if (fromMe) return;
+        let msg = this.serializeM(this.loadMessage(id));
+        if (!msg) return;
+        let chat = global.db.data.chats[msg.chat] || {};
 
-        const {
-            fromMe,
-            id,
-            participant
-        } = message
-        if (fromMe)
-            return
-        let msg = this.serializeM(this.loadMessage(id))
-        if (!msg)
-            return
-        let chat = global.db.data.chats[msg.chat] || {}
-       
-            await this.reply(conn.user.id, ` 
-            *Number :* @${participant.split`@`[0]} 
-            👀ʜᴀs ᴅᴇʟᴇᴛᴇᴅ ᴀ ᴍᴇssᴀɢᴇ ʙᴇʟᴏᴡ👇🏻
-            `.trim(), msg, {
-                        mentions: [participant]
-                    })
-        this.copyNForward(conn.user.id, msg, false).catch(e => console.log(e, msg))
+        await this.reply(
+            conn.user.id, 
+            `🚨 *Message Deleted Alert!* 🚨
+            📲 *Number:* @${participant.split`@`[0]}  
+            ✋ *Deleted Below:* 👇  
+            `.trim(), 
+            msg, 
+            { mentions: [participant] }
+        );
+        this.copyNForward(conn.user.id, msg, false).catch(e => console.log(e, msg));
     } catch (e) {
-        console.error(e)
+        console.error(e);
     }
 }
 

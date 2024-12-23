@@ -60,7 +60,7 @@ ${translatedTafsirEnglish.text}`;
 };
 
 quranSurahHandler.help = ['quran [surah_number|surah_name]'];
-quranSurahHandler.tags = ['quran', 'surah'];
+quranSurahHandler.tags = ['quran',];
 quranSurahHandler.command = ['quran', 'surah']
 
 export default quranSurahHandler;

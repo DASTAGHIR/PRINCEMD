@@ -33,7 +33,7 @@ m.react("✅")
 };
 
 handler.help = ['define <word>'];
-handler.tags = ['tools'];
-handler.command = ['define', 'mean', 'df']
+handler.tags = ['study'];
+handler.command = ['define', 'mean']
 
 export default handler;

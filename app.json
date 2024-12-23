@@ -1,109 +1,97 @@
 {
-  "name": "prince-ds",
-  "description": "PRINCE MD WHATSAPP USER BOT",
-  "repository": "https://github.com/PRINCE-GDS/prince-ds",
-"logo": "https://i.imgur.com/0GodFgO.jpeg",
-"success_url": "https://github.com/PRINCE-GDS/prince-ds",
-"keywords": [
-"nodejs", "heroku", "bot", "urdu", "english", "indonesian", "arab", "portuguese", "italian", "french", "whatsapp",
-"termux", "superbot", "multi-device", "md", "official", "javascript", "princebot"],
-"image": "heroku/nodejs",
+  "name": "PRINCEMD",
+  "description": "whatsapp user bot",
+  "repository": "https://github.com/DASTAGHIR/PRINCEMD",
+  "logo": "https://qu.ax/igJFS.png",
+  "success_url": "https://github.com/DASTAGHIR/PRINCEMD",
+  "keywords": [
+    "nodejs", "heroku", "bot", "urdu", "english", "indonesian", "arab", "portuguese", "italian", "french", "whatsapp",
+    "termux", "superbot", "multi-device", "md", "official", "javascript", "princebot"
+  ],
+  "image": "heroku/nodejs",
   "stack": "container",
   "env": {
-      "OWNERS": {
-      "description": "Put your Number as Owner",
-      "required": true,
-      "value": "923092668xxx;❣️DASTAGEER"
-      },
-     "MODE": {
-      "description": "mode public or private",
-      "required": true,
-      "value": "public"
-       },
-    "PREFIX": {
-      "description": "Put any one symbol here except @ and + , leave it Blank if you want to use multiple prefix",
-      "required": false,
-      "value": ""
-     },
-    "antidelete": {
-      "description": "BOT will forward deleted messages if you make it true",
-      "required": false,
-      "value": "true"
-      },
-    "ANTI_LINK": {
-      "description": "Make true false to ON/OFF antilink",
-      "required": false,
-      "value": "true"
-      },
-    "AUTOREAD": {
-      "description": "Make true to auto check users messages",
-      "required": false,
-      "value": "false"
-      },
-    "VIEWONCE": {
-      "description": "Make true if wanna get view once message",
-      "required": false,
-      "value": "true"
-       },
-      "STATUS_REPLY": {
-      "description": "Status reply true false to on off",
-      "required": false,
-      "value": "false"
-      },
-    "STATUS_MSG": {
-      "description": "Status reply message",
-      "required": false,
-      "value": "Your Status has been seen by Prince bot"
-      },
-    "BOT_NAME": {
-      "description": "Put your BOT a name",
-      "required": true,
-      "value": "ᏢᎡᏆΝХᏟᎬ-ᎷᎠ-ᏔᏴ"
-      },
-    "PACK_NAME": {
-      "description": "Put your stickers pack name",
-      "required": false,
-      "value": "Princebot🎗️❣️"
-      },
-    "DATABASE_URL": {
-      "description": "Put your MongoDB here",
-      "required": false,
-      "value": ""
-      },
-    "DL_MSG": {
-      "description": "Video downloader caption",
-      "required": true,
-      "value": "📥-------- *⛲ᴘʀɪɴᴄᴇ-ᴍᴅ⛲* --------📥"
-      },
-    "STATUSVIEW": {
-      "description": "Make it true if you want the bot to auto view status",
-      "required": false,
-      "value": "false"
-      },
-    "Status_Saver": {
-      "description": "Make it true if you want the bot to auto save your contacts status",
-      "required": false,
-      "value": "false"
-      },
-    "ANTI_CALL": {
-      "description": "Make it true if you want bot to Block unknown callers",
-      "required": false,
-      "value": "false"
-    },
-    "AutoReaction": {
-      "description": "Make it true if you want bot to react on chats",
-      "required": false,
-      "value": "false"
-    },
     "SESSION_ID": {
       "description": "put your session ID here in the box below",
       "required": true,
       "value": ""
-    }
-    
-   
+    },
+    "BOT_NAME": {
+      "description": "put your BOT a name",
+      "required": true,
+      "value": "PRINCE-MD"
+    },
+    "OWNER_NUMBER": {
+      "description": "put your Number and name for Owner",
+      "required": true,
+      "value": "923092668108,❣️DASTAGEER"
+    },
+    "MODE": {
+      "description": "choose bot mode public or private",
+      "required": true,
+      "value": "public"
+    },
+    "PREFIX": {
+      "description": "put any one symbol here leave it Blank if you want to use multiple prefix",
+      "required": false,
+      "value": "" 
+    },
+    "antidelete": {
+      "description": "bot will forward deleted messages if you make it true",
+      "required": false,
+      "value": "false"
+    },
+    "DATABASE_URL": {
+      "description": "put mongodb or postgres or princedb database url for bots better performance",
+      "required": false,
+      "value": ""
+    },
+    "ANTI_LINK": {
+      "description": "it will dlt links and kick user",
+      "required": false,
+      "value": "false"
+    },
+    "AutoReaction": {
+      "description": "make it true to react on chats",
+      "required": false,
+      "value": "false"
+    },
+    "STATUSVIEW": {
+      "description": "make it true to auto view status and likes",
+      "required": false,
+      "value": "false"
+    },
+    "STATUS_REPLY": {
+      "description": "Status reply true false to on off",
+      "required": false,
+      "value": "false"
+    },
+    "STATUS_MSG": {
+      "description": "Status reply msg",
+      "required": false,
+      "value": "Your Status has been seen by Prince bot"
+    },
+    "REJECTSCALLS": {
+      "description": "reject calls",
+      "required": false,
+      "value": "true"
+    },
+    "ANTIFAKE_USERS": {
+      "description": "add antifake numbers bot wont let them to join group for all numbers 1,2,3,4,5,6,7,8,9 like this",
+      "required": false,
+      "value": "1,212,63,44"
+    },
+    "PACK_NAME": {
+      "description": "put your stickers pack name",
+      "required": false,
+      "value": "Princebot🎗️❣️"
+    },
+    "DL_MSG": {
+      "description": "Video downloader caption",
+      "required": true,
+      "value": "_📥*DOWNLOADED SUCCESSFULLY*✅_"
+    } 
   },
-    
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -113,9 +101,6 @@
     },
     {
       "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
-    },
-    {
-      "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
     }
   ]
 }

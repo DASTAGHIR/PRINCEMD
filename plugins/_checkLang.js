@@ -1,5 +1,5 @@
 
-import { en, es, id, pt, ar, ur } from '../language/index.js'
+import { en, es, id, pt, ar, ur } from '../lib/language/index.js'
 
 export async function before(m,{ conn }) {
 

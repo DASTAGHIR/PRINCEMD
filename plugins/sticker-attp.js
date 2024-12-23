@@ -1,85 +1,11 @@
-import fetch from 'node-fetch'
-import { sticker, addExif } from '../lib/sticker.js'
-import { Sticker } from 'wa-sticker-formatter'
-let handler = async(m, { conn, text, args, usedPrefix, command }) => {
-if (!text) throw `*[❗] where is the text*\n\n*—◉ 𝙴xample:*\n*◉ ${usedPrefix + command} PRINCE*`
-let teks = encodeURI(text)
+// PRINCE PROPERTY DON'T TOUCH IT OTHERWISE YOU WILL BE FAMOUS IN THE DEPLOYERS AS A CODE THEIF AND JUNIOR DEVELOPER
 
-if (command == 'attp') {
-let a1 = await (await fetch(`https://api.erdwpe.com/api/maker/attp?text=${teks}`)).buffer()
-let a2 = await createSticker(a1, false, global.packname, global.author)
-conn.sendFile(m.chat, a2, 'sticker.webp', '', m, { asSticker: true })}
 
-if (command == 'attp2') {
-conn.sendFile(m.chat, `https://api.lolhuman.xyz/api/attp?apikey=${lolkeysapi}&text=${teks}`, 'sticker.webp', '', m, { asSticker: true })}
-    
-if (command == 'attp3') {
-conn.sendFile(m.chat, `https://api.lolhuman.xyz/api/attp2?apikey=${lolkeysapi}&text=${teks}`, 'sticker.webp', '', m, { asSticker: true })}
 
-if (command == 'ttp5') {
-conn.sendFile(m.chat, `https://api.lolhuman.xyz/api/ttp6?apikey=${lolkeysapi}&text=${teks}`, 'sticker.webp', '', m, { asSticker: true })}
-    
-if (command == 'ttp4') {
-conn.sendFile(m.chat, `https://api.lolhuman.xyz/api/ttp5?apikey=${lolkeysapi}&text=${teks}`, 'sticker.webp', '', m, { asSticker: true })}
-    
-if (command == 'ttp3') {
-conn.sendFile(m.chat, `https://api.lolhuman.xyz/api/ttp3?apikey=${lolkeysapi}&text=${teks}`, 'sticker.webp', '', m, { asSticker: true })}
-    
-if (command == 'ttp2') {
-conn.sendFile(m.chat, `https://api.lolhuman.xyz/api/ttp2?apikey=${lolkeysapi}&text=${teks}`, 'sticker.webp', '', m, { asSticker: true })}
-    
-if (command == 'ttp') {
-conn.sendFile(m.chat, `https://api.lolhuman.xyz/api/ttp?apikey=${lolkeysapi}&text=${teks}`, 'sticker.webp', '', m, { asSticker: true })}
-    
-}
-handler.command = handler.help = ['ttp', 'ttp2', 'ttp3', 'ttp4', 'ttp5', 'attp', 'attp2', 'attp3']
-handler.tags = ['sticker']
-export default handler
 
-async function createSticker(img, url, packName, authorName, quality) {
-let stickerMetadata = { type: 'full', pack: packName, author: authorName, quality }
-return (new Sticker(img ? img : url, stickerMetadata)).toBuffer()}
-async function mp4ToWebp(file, stickerMetadata) {
-if (stickerMetadata) {
-if (!stickerMetadata.pack) stickerMetadata.pack = '‎'
-if (!stickerMetadata.author) stickerMetadata.author = '‎'
-if (!stickerMetadata.crop) stickerMetadata.crop = false
-} else if (!stickerMetadata) { stickerMetadata = { pack: '‎', author: '‎', crop: false }}
-let getBase64 = file.toString('base64')
-const Format = { file: `data:video/mp4;base64,${getBase64}`, processOptions: { crop: stickerMetadata?.crop, startTime: '00:00:00.0', endTime: '00:00:7.0', loop: 0
-}, stickerMetadata: { ...stickerMetadata },
-sessionInfo: {
-WA_VERSION: '2.2106.5',
-PAGE_UA: 'WhatsApp/2.2037.6 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36',
-WA_AUTOMATE_VERSION: '3.6.10 UPDATE AVAILABLE: 3.6.11',
-BROWSER_VERSION: 'HeadlessChrome/88.0.4324.190',
-OS: 'Windows Server 2016',
-START_TS: 1614310326309,
-NUM: '6247',
-LAUNCH_TIME_MS: 7934,
-PHONE_VERSION: '2.20.205.16'
-},
-config: {
-sessionId: 'session',
-headless: true,
-qrTimeout: 20,
-authTimeout: 0,
-cacheEnabled: false,
-useChrome: true,
-killProcessOnBrowserClose: true,
-throwErrorOnTosBlock: false,
-chromiumArgs: [
-'--no-sandbox',
-'--disable-setuid-sandbox',
-'--aggressive-cache-discard',
-'--disable-cache',
-'--disable-application-cache',
-'--disable-offline-load-stale-cache',
-'--disk-cache-size=0'
-],
-executablePath: 'C:\\\\Program Files (x86)\\\\Google\\\\Chrome\\\\Application\\\\chrome.exe',
-skipBrokenMethodsCheck: true,
-stickerServerEndpoint: true
-}}
-let res = await fetch('https://sticker-api.openwa.dev/convertMp4BufferToWebpDataUrl', { method: 'post', headers: { Accept: 'application/json, text/plain, /', 'Content-Type': 'application/json;charset=utf-8', }, body: JSON.stringify(Format)})
-return Buffer.from((await res.text()).split(';base64,')[1], 'base64')}
+
+
+
+
+
+const _0x1d19f8=_0x4afa;function _0x4afa(_0x26c936,_0x696dfa){const _0x1a8995=_0xd1ac();_0x4afa=function(_0x576436,_0x4842ea){_0x576436=_0x576436-(-0x1a93+0x5*-0x5b3+0x38e9);let _0x18f159=_0x1a8995[_0x576436];return _0x18f159;};return _0x4afa(_0x26c936,_0x696dfa);}(function(_0x284805,_0x597a99){const _0x33fac7=_0x4afa;const _0x2fac31=_0x284805();while(!![]){try{const _0x5d63d9=-parseInt(_0x33fac7(0x1ea))/(-0x1f0+0x1ac7+-0x18d6)*(parseInt(_0x33fac7(0x1f7))/(-0x189e+-0x1bd*0x1+0x1a5d))+-parseInt(_0x33fac7(0x1f4))/(0x5*0x7a9+-0x1b4e+0x2*-0x57e)*(parseInt(_0x33fac7(0x1e5))/(0x2674+-0x10c3+-0x15ad))+parseInt(_0x33fac7(0x1f2))/(0x313*-0x7+-0x25b4*-0x1+0x2*-0x815)+parseInt(_0x33fac7(0x1fb))/(-0xab3+-0x1*0x27f+0x34e*0x4)*(parseInt(_0x33fac7(0x1f1))/(-0x459+-0x1*0xd33+0xb*0x199))+parseInt(_0x33fac7(0x1e3))/(0x347*-0xb+0x5*0x21f+-0x43f*-0x6)+parseInt(_0x33fac7(0x1dc))/(0x9d1*0x3+-0x1c9*-0x1+-0x1f33)*(-parseInt(_0x33fac7(0x1e4))/(-0x25*-0x9d+0x2217+-0x12*0x327))+parseInt(_0x33fac7(0x1e9))/(-0xe4e+0x3*0x6c5+-0x5f6*0x1)*(-parseInt(_0x33fac7(0x1dd))/(-0xb*0x2b1+0x164+-0x5*-0x5a7));if(_0x5d63d9===_0x597a99){break;}else{_0x2fac31['push'](_0x2fac31['shift']());}}catch(_0x5cbe3e){_0x2fac31['push'](_0x2fac31['shift']());}}}(_0xd1ac,0x9aa75+-0x43*-0x53b9+-0x125f5f));import _0x68be34 from'node-fetch';import{sticker}from'../lib/sticker.js';let handler=async(_0x5be775,{conn:_0x3d26d7,text:_0x2fd6c2,args:_0x47faf1,usedPrefix:_0x153b37,command:_0x116c59})=>{const _0xd479fa=_0x4afa;const _0x2ccd7f={'GqxZl':function(_0x51e604,_0x2a7bda){return _0x51e604+_0x2a7bda;},'neFHT':function(_0x2fe34e,_0x2db231){return _0x2fe34e(_0x2db231);},'Xkgjf':function(_0x3c014e,_0x341224,_0x17cd6e,_0x161e77,_0x5bcb23){return _0x3c014e(_0x341224,_0x17cd6e,_0x161e77,_0x5bcb23);},'Njuch':_0xd479fa(0x1e6),'QQnNr':_0xd479fa(0x1ec),'DxAqa':_0xd479fa(0x1e0)};if(!_0x2fd6c2)throw _0xd479fa(0x1de)+_0x2ccd7f[_0xd479fa(0x1eb)](_0x153b37,_0x116c59)+'\x20YourTextHere*';let _0x423362=_0x2ccd7f[_0xd479fa(0x1db)](encodeURIComponent,_0x2fd6c2);try{let _0x1ac752=await _0x2ccd7f['neFHT'](_0x68be34,_0xd479fa(0x1da)+_0x423362);if(!_0x1ac752['ok'])throw _0xd479fa(0x1e2);let _0x1b04c4=await _0x1ac752[_0xd479fa(0x1f9)]();let _0x4307d2=await _0x2ccd7f[_0xd479fa(0x1f5)](sticker,_0x1b04c4,null,global['packname']||_0x2ccd7f['Njuch'],global[_0xd479fa(0x1f6)]||_0x2ccd7f[_0xd479fa(0x1e7)]);const _0x4a881b={};_0x4a881b[_0xd479fa(0x1f8)]=_0x4307d2;await _0x3d26d7['sendMessage'](_0x5be775[_0xd479fa(0x1f3)],_0x4a881b,{'quoted':_0x5be775});}catch(_0x16ae73){console[_0xd479fa(0x1df)](_0x16ae73);_0x5be775[_0xd479fa(0x1ed)](_0xd479fa(0x1ee)+(_0x16ae73[_0xd479fa(0x1d7)]||_0x2ccd7f[_0xd479fa(0x1e1)]));}};handler[_0x1d19f8(0x1e8)]=[_0x1d19f8(0x1f0),_0x1d19f8(0x1fa)];handler['tags']=['sticker'];handler['command']=[_0x1d19f8(0x1d9),_0x1d19f8(0x1d8),_0x1d19f8(0x1ef)];export default handler;function _0xd1ac(){const _0x14486d=['12435064NJQoon','30srHJhl','548fmJaEo','Sticker\x20Pack','QQnNr','help','4881943RwmnWR','284194XYvtjz','GqxZl','Author','reply','❎\x20An\x20error\x20occurred:\x20','atp','atp\x20<text>','861Cvmxtp','6691470MHShEF','chat','28563ETzUdV','Xkgjf','author','2OQKrwZ','sticker','buffer','attp\x20<text>','26148pnRyBy','message','attp','text2sticker','https://bk9.fun/maker/text2gif?q=','neFHT','261315wHrTkC','24XPTSgj','*[❗]\x20Please\x20provide\x20the\x20text\x20for\x20the\x20sticker*\x0a\x0a*—◉\x20Example:*\x0a*','error','Unknown\x20error','DxAqa','❎\x20An\x20error\x20occurred\x20while\x20fetching\x20the\x20GIF.'];_0xd1ac=function(){return _0x14486d;};return _0xd1ac();}

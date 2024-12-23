@@ -1,14 +1,33 @@
-FROM fedora:37
-
-RUN dnf -y update && \
-    dnf install -y \
-      https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-      https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && \
-    dnf install -y git ffmpeg ImageMagick nodejs yarnpkg libwebp && \
-    dnf clean all -y
-    
-RUN git clone https://github.com/PRINCE-GDS/prince-ds
-WORKDIR /prince-ds
-
-RUN yarn install
-CMD ["node", "index.js"]
+name: princemd
+services:
+  - name: prince-md-service
+    type: web
+    ports:
+      - 3000
+    routes:
+      - path: "/"
+    build:
+      type: docker
+      dockerfile: ./Dockerfile
+    env:
+      - OWNERS=923092668108;❣️DASTAGEER
+      - MODE=public
+      - PREFIX=""
+      - antidelete=false
+      - ANTI_LINK=false
+      - AUTOREAD=false
+      - VIEWONCE=false
+      - STATUS_REPLY=false
+      - STATUSLIKES=true
+      - STATUS_MSG="Your Status has been seen by Prince bot"
+      - BOT_NAME=PRINCE-MD
+      - PACK_NAME="Princebot🎗️❣️"
+      - DL_MSG="_📥-------- *DOWNLOADED SUCCESSFULLY* --------📥_"
+      - STATUSVIEW=false
+      - Status_Saver=false
+      - REJECTSCALLS=false
+      - AutoReaction=false
+      - SESSION_ID="" # Add your session ID here
+    regions:
+      - fra
+      - sin

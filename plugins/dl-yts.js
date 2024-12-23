@@ -1,8 +1,21 @@
-// PRINCE PROPERTY DON'T TOUCH IT OTHERWISE YOU WILL BE FAMOUS IN THE DEPLOYERS AS A CODE THEIF AND JUNIOR DEVELOPER
+import yts from 'yt-search';
 
-
-
-
-
-
-const _0x14a044=_0x27cd;function _0x27cd(_0x26da0e,_0x1776fa){const _0x4fec6d=_0x4fec();return _0x27cd=function(_0x27cd73,_0x517a7a){_0x27cd73=_0x27cd73-0x183;let _0x59697d=_0x4fec6d[_0x27cd73];return _0x59697d;},_0x27cd(_0x26da0e,_0x1776fa);}function _0x4fec(){const _0x2f4633=['NumberFormat','2326664lIFpWP','views','.*\x20','description','1044845WPQqAw','url','image','ᴘʀɪɴᴄᴇ\x20ᴍᴅ\x20ʏᴏᴜᴛᴜʙᴇ\x20sᴇᴀʀᴄʜ\x20ʀᴇsᴜʟᴛs','https://example.com/default-thumbnail.jpg','Please\x20provide\x20the\x20name\x20of\x20a\x20YouTube\x20video\x20or\x20channel.','ᴘʀɪɴᴄᴇ\x20ᴍᴅ','2074752rdMESX','author','\x20\x20\x20👀\x20Views:\x20','120363199257221654@newsletter','🔹\x20*','1833750OEquiH','profilePictureUrl','command','error','24EdTsro','timestamp','caption','4011420XGPbgd','No\x20description\x20available.','quoted','sendMessage','forEach','join','reply','\x22:*\x0a\x0a','8504WDZJuF','chat','Prince\x20MD','Unknown','text','30018wHhaQE','An\x20error\x20occurred.\x20Please\x20try\x20again\x20later.','sender','\x20\x20\x20🕒\x20Duration:\x20','*Top\x2015\x20YouTube\x20Search\x20Results\x20for\x20\x22','trim','474YyThLF','compact'];_0x4fec=function(){return _0x2f4633;};return _0x4fec();}(function(_0x41f20f,_0x508a73){const _0x28cf4d=_0x27cd,_0xe674=_0x41f20f();while(!![]){try{const _0x1a30bc=-parseInt(_0x28cf4d(0x18a))/0x1*(parseInt(_0x28cf4d(0x19a))/0x2)+parseInt(_0x28cf4d(0x1a0))/0x3*(parseInt(_0x28cf4d(0x195))/0x4)+parseInt(_0x28cf4d(0x1a7))/0x5+-parseInt(_0x28cf4d(0x186))/0x6+parseInt(_0x28cf4d(0x18d))/0x7+-parseInt(_0x28cf4d(0x1a3))/0x8+parseInt(_0x28cf4d(0x1ae))/0x9;if(_0x1a30bc===_0x508a73)break;else _0xe674['push'](_0xe674['shift']());}catch(_0x184769){_0xe674['push'](_0xe674['shift']());}}}(_0x4fec,0x5fa6f));import _0x4d1f90 from'yt-search';const handler=async(_0x5c9b7c,{conn:_0x55d4a4,args:_0x5f4252})=>{const _0x33efe8=_0x27cd;try{const _0x71b0ca=_0x5f4252['length']>=0x1?_0x5f4252[_0x33efe8(0x192)]('\x20'):_0x5c9b7c[_0x33efe8(0x18f)]?.[_0x33efe8(0x199)]||_0x5c9b7c[_0x33efe8(0x18f)]?.[_0x33efe8(0x18c)]||_0x5c9b7c['quoted']?.['description']||null;if(!_0x71b0ca)return _0x55d4a4[_0x33efe8(0x193)](_0x5c9b7c[_0x33efe8(0x196)],_0x33efe8(0x1ac),_0x5c9b7c);const {videos:_0x5d3db3}=await _0x4d1f90(_0x71b0ca);if(!_0x5d3db3||_0x5d3db3['length']===0x0)return _0x55d4a4[_0x33efe8(0x193)](_0x5c9b7c[_0x33efe8(0x196)],'No\x20results\x20found\x20for\x20\x22'+_0x71b0ca+'\x22.',_0x5c9b7c);const _0x2f1e87=_0x5d3db3['slice'](0x0,0xf);let _0x1ace7c=_0x33efe8(0x19e)+_0x71b0ca+_0x33efe8(0x194);_0x2f1e87[_0x33efe8(0x191)]((_0x11c7e9,_0xd5caa0)=>{const _0x1f203e=_0x33efe8;_0x1ace7c+=_0x1f203e(0x185)+(_0xd5caa0+0x1)+_0x1f203e(0x1a5)+_0x11c7e9['title']+'\x0a',_0x1ace7c+='\x20\x20\x20🖇️\x20URL:\x20'+_0x11c7e9[_0x1f203e(0x1a8)]+'\x0a',_0x1ace7c+=_0x1f203e(0x19d)+(_0x11c7e9[_0x1f203e(0x18b)]||_0x1f203e(0x198))+'\x0a',_0x1ace7c+=_0x1f203e(0x183)+(new Intl[(_0x1f203e(0x1a2))]('en',{'notation':_0x1f203e(0x1a1)})['format'](_0x11c7e9[_0x1f203e(0x1a4)])||'Unknown')+'\x0a',_0x1ace7c+='\x20\x20\x20📝\x20Description:\x20'+(_0x11c7e9[_0x1f203e(0x1a6)]||_0x1f203e(0x18e))+'\x0a\x0a';});let _0x502bd1;try{_0x502bd1=await _0x55d4a4[_0x33efe8(0x187)](_0x5c9b7c[_0x33efe8(0x19c)],_0x33efe8(0x1a9));}catch(_0x3bdd97){_0x502bd1=_0x33efe8(0x1ab);}_0x55d4a4[_0x33efe8(0x190)](_0x5c9b7c[_0x33efe8(0x196)],{'text':_0x1ace7c[_0x33efe8(0x19f)](),'contextInfo':{'mentionedJid':[_0x5c9b7c[_0x33efe8(0x19c)]],'isForwarded':!![],'forwardedNewsletterMessageInfo':{'newsletterJid':_0x33efe8(0x184),'newsletterName':global[_0x33efe8(0x1af)]||_0x33efe8(0x197),'serverMessageId':-0x1},'forwardingScore':0x3e7,'externalAdReply':{'title':_0x33efe8(0x1ad),'body':_0x33efe8(0x1aa),'thumbnailUrl':_0x502bd1,'sourceUrl':'','mediaType':0x1,'renderLargerThumbnail':![]}}});}catch(_0x4c0709){console[_0x33efe8(0x189)](_0x4c0709),_0x55d4a4['reply'](_0x5c9b7c[_0x33efe8(0x196)],_0x33efe8(0x19b),_0x5c9b7c);}};handler[_0x14a044(0x188)]=/^y(outubesearch|ts(earch)|ytss?)$/i;export default handler;
+let handler = async (m, { conn, usedPrefix, text, args, command }) => {
+if (!text) return m.reply(`✨ *What are you searching for?* Enter the name of the topic.\n📌 *Example:*\n*${usedPrefix + command}* Naat Shareef`);
+m.react('🔍');
+    
+let result = await yts(text);
+let ytres = result.videos;
+if (!ytres.length) return m.reply('❌ *No results found.*');
+    
+let textoo = `🔍 *• Search Results for:*  *${text}*\n\n`;
+for (let i = 0; i < Math.min(15, ytres.length); i++) { 
+let v = ytres[i];
+textoo += `🎵 *Title:* ${v.title}\n📆 *Published:* ${v.ago}\n👀 *Views:* ${v.views}\n⌛ *Duration:* ${v.timestamp}\n🔗 *Link:* ${v.url}\n\n⊱ ────── {.⋅ 🎶 ⋅.} ───── ⊰\n\n`;
+}
+await conn.sendFile(m.chat, ytres[0].image, 'thumbnail.jpg', textoo, m, null);
+};
+handler.help = ['playlist', 'yts'];
+handler.tags = ['downloader'];
+handler.command = ['playvid2', 'playlist', 'playlista', 'yts', 'ytsearch'];
+export default handler;
