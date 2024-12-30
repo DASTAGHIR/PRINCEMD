@@ -11,20 +11,20 @@
   "image": "heroku/nodejs",
   "stack": "container",
   "env": {
-    "SESSION_ID": {
+    "SESSION_ID": {Prince~N1hQTJLJ#MGCy5EjVZ_wF2OuYWSvBfQ-Gw4qMDPt1Z4HOX2SZY5k
       "description": "put your session ID here in the box below",
       "required": true,
       "value": ""
     },
-    "BOT_NAME": {
+    "BOT_NAME": {prince-md 
       "description": "put your BOT a name",
       "required": true,
       "value": "PRINCE-MD"
     },
-    "OWNER_NUMBER": {
+    "OWNER_NUMBER": {916291332388
       "description": "put your Number and name for Owner",
       "required": true,
-      "value": "9230926680000,❣️PRINCE THE DEVELOPER"
+      "value": "916291332388,❣️PRINCE THE DEVELOPER"
     },
     "MODE": {
       "description": "choose bot mode public or private",
@@ -38,8 +38,8 @@
     },
     "antidelete": {
       "description": "bot will forward deleted messages if you make it true",
-      "required": false,
-      "value": "false"
+      "required": true,
+      "value": "true"
     },
     "DATABASE_URL": {
       "description": "put mongodb or postgres or princedb database url for bots better performance",
@@ -53,23 +53,23 @@
     },
     "AutoReaction": {
       "description": "make it true to react on chats",
-      "required": false,
-      "value": "false"
+      "required": true,
+      "value": "true"
     },
     "STATUSVIEW": {
       "description": "make it true to auto view status and likes",
-      "required": false,
-      "value": "false"
+      "required": true,
+      "value": "true"
     },
     "STATUS_MSG": {
       "description": "Status reply msg",
-      "required": false,
-      "value": "Your Status has been seen by Prince bot"
+      "required": true,
+      "value": "your status has been seen 5g seed 🌚"
     },
     "REJECTSCALLS": {
       "description": "reject calls",
       "required": false,
-      "value": "true"
+      "value": "false"
     },
     "ANTIFAKE_USERS": {
       "description": "add antifake numbers bot wont let them to join group for all numbers 1,2,3,4,5,6,7,8,9 like this",
